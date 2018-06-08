@@ -4,14 +4,14 @@ local optnet = require 'optnet'
 torch.setdefaulttensortype('torch.FloatTensor')
 
 opt = {
-    batchSize = 32,        -- number of samples to produce
+    batchSize = 1,        -- number of samples to produce
     noisetype = 'normal',  -- type of noise distribution (uniform / normal).
     net = '',              -- path to the generator network
     imsize = 1,            -- used to produce larger images. 1 = 64px. 2 = 80px, 3 = 96px, ...
-    noisemode = 'random',  -- random / line / linefull1d / linefull
+    noisemode = 'normal',  -- random / line / linefull1d / linefull
     name = 'generation1',  -- name of the file saved
-    gpu = 1,               -- gpu mode. 0 = CPU, 1 = GPU
-    display = 1,           -- Display image: 0 = false, 1 = true
+    gpu = 0,               -- gpu mode. 0 = CPU, 1 = GPU
+    display = 0,           -- Display image: 0 = false, 1 = true
     nz = 100,              
 }
 for k,v in pairs(opt) do opt[k] = tonumber(os.getenv(k)) or os.getenv(k) or opt[k] end
@@ -94,5 +94,5 @@ print('Saved image to: ', opt.name .. '.png')
 if opt.display then
     disp = require 'display'
     disp.image(images)
-    print('Displayed image')
+    print('Image Displayed')
 end
